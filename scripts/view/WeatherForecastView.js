@@ -23,21 +23,24 @@ class WeatherForecastView {
         switch (weatherModel.weather) {
             case "Clear":
                 condition.textContent = "Clear";
-                weather_icon.src = "/images/sunny_icon.png";
+                weather_icon.src = "images/sunny_icon.png";
                 break;
             case "Clouds":
                 condition.textContent = "Cloudy";
-                weather_icon.src = "/images/cloud_icon.png";
+                weather_icon.src = "images/cloud_icon.png";
                 break;
             case "Rain":
-            case "Thunderstorm":
             case "Drizzle":
                 condition.textContent = "Rainy";
-                weather_icon.src = "/images/rain_icon.png";
+                weather_icon.src = "images/rain_icon.png";
+                break;
+            case "Thunderstorm":
+                condition.textContent = "Rainy";
+                weather_icon.src = "images/storm_icon.png";
                 break;
             case "Snow":
                 condition.textContent = "Snow";
-                weather_icon.src = "/images/cloud_icon.png";
+                weather_icon.src = "images/cloud_icon.png";
                 break;
         }
     }
