@@ -47,13 +47,33 @@ body {
     margin-top: 1rem;
 }
 
-.weekly-forecast .day {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
+.weekly-forecast-block {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.weekly-forecast-block .day {
+    display: table-cell;
+    text-transform: capitalize;
+    text-align: center;
 }
 
-.weekly-forecast .day:last-child {
-    border-bottom: none;
+.day_name{
+    font-weight: bold;
+}
+.day_date{
+    font-size: 13px;
+}
+.day img{
+    width: 70px;
+}
+.details p span{
+    font-weight: bold;
+}
+.city-info p {
+    font-style: italic;
+}
+.city-info p span{
+    text-decoration: underline;
 }

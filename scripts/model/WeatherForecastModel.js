@@ -33,9 +33,11 @@ class WeatherForecastModel {
                 weatherToday.humidity = json.main.humidity;
                 weatherToday.wind = json.wind.speed;
                 weatherToday.clouds = json.clouds.all;
-                weatherToday.pressure = json.pressure;
+                weatherToday.pressure = json.main.pressure;
                 weatherToday.weather = json.weather[0].main;
                 weatherToday.icon = json.weather[0].icon;
+                weatherToday.sunrise = json.sys.sunrise;
+                weatherToday.sunset = json.sys.sunset;
 
                 this.view.renderTodayWeatherBlock(weatherToday);
 

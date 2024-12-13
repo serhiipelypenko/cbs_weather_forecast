@@ -9,6 +9,8 @@ class WeatherModel {
     #pressure;
     #weather;
     #icon;
+    #sunrise;
+    #sunset;
 
     constructor(city_name) {
         this.city_name = city_name;
@@ -75,6 +77,22 @@ class WeatherModel {
 
     get icon(){
         return this.#icon;
+    }
+
+    set sunrise(sunrise){
+        this.#sunrise = new Date(sunrise*1000);
+    }
+
+    get sunrise(){
+        return this.#sunrise;
+    }
+
+    set sunset(sunset){
+        this.#sunset = new Date(sunset*1000);
+    }
+
+    get sunset(){
+        return this.#sunset;
     }
 
 }

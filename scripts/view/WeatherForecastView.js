@@ -1,81 +1,111 @@
 class WeatherForecastView {
 
+    path_to_images = 'images/';
     constructor() {
     }
 
     renderTodayWeatherBlock(weatherModel){
         let city_block = document.getElementById('city');
         let weather_icon = document.getElementById('weather-icon');
-        let temperature = document.getElementById('temperature');
+        let temperature_block = document.getElementById('temperature');
         let condition = document.getElementById('condition');
-        let humidity = document.getElementById('humidity');
-        let wind = document.getElementById('wind');
+        let humidity_block = document.getElementById('humidity');
+        let wind_block = document.getElementById('wind');
+        let clouds_block = document.getElementById('clouds');
         let date_block = document.getElementById('date');
+        let pressure_block = document.getElementById('pressure');
+        let sunrise_block = document.getElementById('sunrise');
+        let sunset_block = document.getElementById('sunset');
+
 
         city_block.textContent = weatherModel.city_name;
-        temperature.textContent = weatherModel.temperature_celsius + "°C";
-        date_block.textContent = weatherModel.date.getDate()+'/'+weatherModel.date.getMonth()+'/'+weatherModel.date.getFullYear();
-        //cloudsOutput.textContent = json.clouds.all + "%";
-        humidity.textContent = weatherModel.humidity + "%";
-        wind.textContent = weatherModel.wind + "m/s";
-        //pressureOut.textContent = json.main.pressure + "hPa";
+        temperature_block.textContent = weatherModel.temperature_celsius + "°C";
+        date_block.textContent = weatherModel.date.getDate() + '/' + weatherModel.date.getMonth() + '/' + weatherModel.date.getFullYear();
+        clouds_block.textContent = weatherModel.clouds + "%";
+        humidity_block.textContent = weatherModel.humidity + "%";
+        wind_block.textContent = weatherModel.wind + "m/s";
+        pressure_block.textContent =  weatherModel.pressure + "hPa";
+        sunrise_block.textContent =  weatherModel.sunrise.getHours() +':' + weatherModel.sunrise.getMinutes();
+        sunset_block.textContent =  weatherModel.sunset.getHours() + ':' + weatherModel.sunset.getMinutes();
 
+        condition.textContent = this.weatherConditionTranslate(weatherModel.weather);
         switch (weatherModel.weather) {
             case "Clear":
-                condition.textContent = "Clear";
-                weather_icon.src = "images/sunny_icon.png";
+                weather_icon.src = this.path_to_images + "sunny_icon.png";
                 break;
             case "Clouds":
-                condition.textContent = "Cloudy";
-                weather_icon.src = "images/cloud_icon.png";
+                weather_icon.src = this.path_to_images + "cloud_icon.png";
                 break;
             case "Rain":
             case "Drizzle":
-                condition.textContent = "Rainy";
-                weather_icon.src = "images/rain_icon.png";
+                weather_icon.src = this.path_to_images + "rain_icon.png";
                 break;
             case "Thunderstorm":
-                condition.textContent = "Rainy";
-                weather_icon.src = "images/storm_icon.png";
+                weather_icon.src = this.path_to_images + "storm_icon.png";
                 break;
             case "Snow":
-                condition.textContent = "Snow";
-                weather_icon.src = "images/cloud_icon.png";
+                weather_icon.src = this.path_to_images + "cloud_icon.png";
                 break;
         }
     }
 
-    clearBlockWeathersNextDays(){
-        let blockForecast = document.querySelector('.weekly-forecast');
-        if(blockForecast.querySelector('.day')){
-            blockForecast.querySelectorAll(".day").forEach(el => el.remove());
-        }
-    }
     renderNextDaysWeatherBlock(weatherModel){
 
-        let blockForecast = document.querySelector('.weekly-forecast');
+        let blockForecast = document.querySelector('.weekly-forecast-block');
 
         let nameDay = weatherModel.date.toLocaleDateString('uk-UA', { weekday: 'long' });
-        let newElement = document.createElement('div');
-        newElement.classList.add('day');
-        let paragraph  = document.createElement('p');
-        paragraph.innerText = nameDay;
-        let paragraphYear  = document.createElement('p');
-        paragraphYear.innerText =  weatherModel.date.getDate()+'/'+ weatherModel.date.getMonth()+'/'+ weatherModel.date.getFullYear();
+        let commonBlock = document.createElement('div');
+        commonBlock.classList.add('day');
+        let paragraphDay  = document.createElement('p');
+        paragraphDay.innerText = nameDay;
+        paragraphDay.classList.add('day_name');
+        let paragraphDate  = document.createElement('p');
+        paragraphDate.innerText =  weatherModel.date.getDate()+'/'+ weatherModel.date.getMonth()+'/'+ weatherModel.date.getFullYear();
+        paragraphDate.classList.add('day_date');
         let paragraphWeather  = document.createElement('p');
-        paragraphWeather.innerText =  weatherModel.weather;
+        paragraphWeather.innerText =  this.weatherConditionTranslate(weatherModel.weather);
+        paragraphWeather.classList.add('day_weather');
         let iconWeather  = document.createElement('img');
         iconWeather.src ='https://openweathermap.org/img/wn/'+weatherModel.icon+'@2x.png';
         let paragraphTemp  = document.createElement('p');
         paragraphTemp.innerText = weatherModel.temperature_celsius + "°C";
 
-        newElement.appendChild(paragraph);
-        newElement.appendChild(paragraphYear);
-        newElement.appendChild(paragraphWeather);
-        newElement.appendChild(iconWeather);
-        newElement.appendChild(paragraphTemp);
+        commonBlock.appendChild(paragraphDay);
+        commonBlock.appendChild(paragraphDate);
+        commonBlock.appendChild(iconWeather);
+        commonBlock.appendChild(paragraphTemp);
+        commonBlock.appendChild(paragraphWeather);
+        blockForecast.appendChild(commonBlock);
 
-        blockForecast.appendChild(newElement);
+    }
 
+    clearBlockWeathersNextDays(){
+        let blockForecast = document.querySelector('.weekly-forecast-block');
+        if(blockForecast.querySelector('.day')){
+            blockForecast.querySelectorAll(".day").forEach(el => el.remove());
+        }
+    }
+
+    weatherConditionTranslate(weatherCondition){
+        let result = weatherCondition;
+        switch (weatherCondition) {
+            case "Clear":
+                result = "Сонячно";
+                break;
+            case "Clouds":
+                result = "Хмарно";
+                break;
+            case "Rain":
+            case "Drizzle":
+                result = "Дощ";
+                break;
+            case "Thunderstorm":
+                result = "Дощ з грозою";
+                break;
+            case "Snow":
+                result = "Очікується сніг";
+                break;
+        }
+        return result;
     }
 }
