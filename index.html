@@ -17,6 +17,7 @@
     <main class="forecast-container">
         <label for="new_city">Вкажіть місто</label>
         <input name="city" id="new_city" type="text" value="" />
+        <p class="error" id="errorCity" style="display: none;"></p>
         <section class="city-info">
             <h2 id="city"></h2>
             <p>Дата: <span id="date"></span></p>
@@ -27,13 +28,17 @@
                 <h3 id="temperature"></h3>
                 <p id="condition"></p>
             </div>
-            <div class="details">
-                <p>Вологість: <span id="humidity"></span></p>
-                <p>Вітер: <span id="wind"></span></p>
-                <p>Хмарність: <span id="clouds"></span></p>
-                <p>Тиск: <span id="pressure"></span></p>
-                <p>Схід сонця: <span id="sunrise"></span></p>
-                <p>Захід сонця: <span id="sunset"></span></p>
+            <div class="details" style="display: flex">
+                <div >
+                    <p>Вологість: <span id="humidity"></span></p>
+                    <p>Вітер: <span id="wind"></span></p>
+                    <p>Хмарність: <span id="clouds"></span></p>
+                </div>
+                <div >
+                    <p>Тиск: <span id="pressure"></span></p>
+                    <p>Схід сонця: <span id="sunrise"></span></p>
+                    <p>Захід сонця: <span id="sunset"></span></p>
+                </div>
             </div>
         </section>
         <section class="weekly-forecast">
@@ -42,6 +47,7 @@
             </div>
         </section>
     </main>
+    <script type="text/javascript" src="scripts/error/CityError.js"></script>
     <script type="text/javascript" src="scripts/model/WeatherModel.js"></script>
     <script type="text/javascript" src="scripts/model/WeatherForecastModel.js"></script>
     <script type="text/javascript" src="scripts/view/WeatherForecastView.js"></script>

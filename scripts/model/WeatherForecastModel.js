@@ -18,11 +18,13 @@ class WeatherForecastModel {
 
     getWeatherByCity(city_name){
         let url = this.getUrlByNameCity(city_name);
+        this.view.hideErrorCity();
         fetch(url)
             .then(response => response.json())
             .then(json => {
                 if(json.cod !== 200){
-                    throw ('Sorry');
+                    this.view.showErrorCity(city_name)
+                    throw new CityError(city_name);
                 }
                 let lat = json.coord.lat;
                 let lon = json.coord.lon;

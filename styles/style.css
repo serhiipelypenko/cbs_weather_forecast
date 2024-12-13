@@ -45,8 +45,11 @@ body {
 
 .details {
     margin-top: 1rem;
+    display: flex;
 }
-
+.details div{
+    margin: 0 30px;
+}
 .weekly-forecast-block {
     display: table;
     width: 100%; /*Optional*/
@@ -76,4 +79,8 @@ body {
 }
 .city-info p span{
     text-decoration: underline;
+}
+.error{
+    color:red;
+    font-size:13px;
 }

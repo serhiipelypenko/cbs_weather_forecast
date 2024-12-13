@@ -108,4 +108,15 @@ class WeatherForecastView {
         }
         return result;
     }
+
+    showErrorCity(city_name){
+        let errorCity = document.getElementById('errorCity');
+        errorCity.textContent = 'Не знайшли даних за вказаним містом. Ви вказали "' + city_name + '"';
+        errorCity.style.display = 'block';
+    }
+
+    hideErrorCity(){
+        let errorCity = document.getElementById('errorCity');
+        errorCity.style.display = 'none';
+    }
 }
