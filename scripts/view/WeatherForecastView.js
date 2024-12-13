@@ -44,7 +44,7 @@ class WeatherForecastView {
                 weather_icon.src = this.path_to_images + "storm_icon.png";
                 break;
             case "Snow":
-                weather_icon.src = this.path_to_images + "cloud_icon.png";
+                weather_icon.src = this.path_to_images + "snow_icon.png";
                 break;
         }
     }
