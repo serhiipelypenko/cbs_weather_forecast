@@ -49,7 +49,7 @@ class WeatherForecastModel {
                     .then(json => {
                         let weekly_weather = [];
                         let list_weathers = json.list;
-                        const current_timestamp = ((new Date()).getTime()/1000).toFixed() * 1;
+                        const current_timestamp = parseInt(((new Date()).getTime()/1000).toFixed());
                         const seconds_to_next_day = 24 * 60 * 60;
                         let last_date = current_timestamp + seconds_to_next_day;
                         for (let i = 0; i < list_weathers.length; i++) {

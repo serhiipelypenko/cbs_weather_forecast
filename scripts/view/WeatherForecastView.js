@@ -20,7 +20,7 @@ class WeatherForecastView {
 
         city_block.textContent = weatherModel.city_name;
         temperature_block.textContent = weatherModel.temperature_celsius + "°C";
-        date_block.textContent = weatherModel.date.getDate() + '/' + weatherModel.date.getMonth() + '/' + weatherModel.date.getFullYear();
+        date_block.textContent = weatherModel.date.getDate() + '/' + (weatherModel.date.getMonth()+1) + '/' + weatherModel.date.getFullYear();
         clouds_block.textContent = weatherModel.clouds + "%";
         humidity_block.textContent = weatherModel.humidity + "%";
         wind_block.textContent = weatherModel.wind + "m/s";
@@ -60,7 +60,7 @@ class WeatherForecastView {
         paragraphDay.innerText = nameDay;
         paragraphDay.classList.add('day_name');
         let paragraphDate  = document.createElement('p');
-        paragraphDate.innerText =  weatherModel.date.getDate()+'/'+ weatherModel.date.getMonth()+'/'+ weatherModel.date.getFullYear();
+        paragraphDate.innerText =  weatherModel.date.getDate()+'/'+ (weatherModel.date.getMonth()+1)+'/'+ weatherModel.date.getFullYear();
         paragraphDate.classList.add('day_date');
         let paragraphWeather  = document.createElement('p');
         paragraphWeather.innerText =  this.weatherConditionTranslate(weatherModel.weather);

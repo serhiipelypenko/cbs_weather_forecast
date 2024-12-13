@@ -1,6 +1,6 @@
 class WeatherModel {
 
-    city_name;
+    #city_name;
     #temperature_celsius;
     #date;
     #humidity;
@@ -14,6 +14,14 @@ class WeatherModel {
 
     constructor(city_name) {
         this.city_name = city_name;
+    }
+
+    set city_name(city_name){
+        this.#city_name = city_name;
+    }
+
+    get city_name(){
+        return this.#city_name;
     }
 
     set temperature_celsius(temperature_celsius){
