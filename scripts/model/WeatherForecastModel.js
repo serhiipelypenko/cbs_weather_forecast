@@ -17,9 +17,9 @@ class WeatherForecastModel {
     }
 
     getWeatherByCity(city_name){
-        let url = this.getUrlByNameCity(city_name);
+        let urlWeather = this.getUrlByNameCity(city_name);
         this.view.hideErrorCity();
-        fetch(url)
+        fetch(urlWeather)
             .then(response => response.json())
             .then(json => {
                 if(json.cod !== 200){
@@ -43,8 +43,8 @@ class WeatherForecastModel {
 
                 this.view.renderTodayWeatherBlock(weatherToday);
 
-                let urlExtra = this.getUrlByLatLon(lat,lon);
-                fetch(urlExtra)
+                let urlWeatherNextDays = this.getUrlByLatLon(lat,lon);
+                fetch(urlWeatherNextDays)
                     .then(response => response.json())
                     .then(json => {
                         let weekly_weather = [];
